@@ -9,132 +9,164 @@
     --radius: 12px;
     --gap: 1rem;
   }
-  html {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  body::-webkit-scrollbar { display: none; }
-  body { margin: 0; padding: 0; font-family: "Segoe UI", sans-serif; }
-  h1 {
-    text-align: center; color: var(--accent);
-    margin: 1.5rem 0; font-size: 1.8rem;
+  body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: var(--bg);
+    overflow-x: hidden;
   }
   #rss-feed {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: var(--gap);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: var(--gap);
-    max-width: 1000px; margin: auto; padding: var(--gap);
-    background: var(--bg); border-radius: var(--radius);
+  }
+  .title {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    font-weight: bold;
+    margin-bottom: 1rem;
   }
   .item-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    display: flex; flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    transition: transform 0.2s, box-shadow 0.2s;
-    opacity: 0; animation: fadeIn 0.3s forwards;
+    transition: transform 0.2s;
   }
   .item-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   }
   .item-thumb {
-    width: 100%; height: 160px; object-fit: cover;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
     background: #dbe5e0;
   }
   .item-content {
-    padding: 1rem; display: flex; flex-direction: column; flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
-  .item-content h2 { margin:0 0 .5rem; font-size:1.15rem; color: var(--accent); }
-  .item-content h2 a { text-decoration:none; color:inherit; }
-  .badges { display:flex; gap:.5rem; margin-bottom:.75rem; }
-  .badge { font-size:.75rem; padding:2px 6px; background:var(--accent); color:#fff; border-radius:4px; }
-  .badge.source { background:var(--muted); }
-  .item-content p { flex:1; margin:0 0 1rem; font-size:.95rem; color:var(--text); line-height:1.4; }
-  .item-content a.read-more { text-decoration:none; color:var(--accent); font-weight:bold; transition:opacity .2s; }
-  .item-content a.read-more:hover { opacity:.8; }
-  .loading { grid-column:1/-1; text-align:center; color:var(--muted); }
-  .end-msg { grid-column:1/-1; text-align:center; color:var(--muted); margin:var(--gap) 0; }
-  @keyframes fadeIn { to { opacity:1; } }
+  .item-content h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+  .item-content a {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .item-content p {
+    flex: 1;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .badge {
+    font-size: 0.75rem;
+    background: var(--muted);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
 </style>
 
-<h1>Najnovšie správy SZ & ČZ</h1>
-<div id="rss-feed"><div class="loading">Načítavam správy…</div></div>
+<div class="title">📰 Najnovšie predpisy a správy</div>
+<div id="rss-feed">Načítavam...</div>
 
 <script>
-(async function(){
-  const FEEDS = [
-    {url:'https://www.aktuality.sk/rss/',name:'Aktuality'},
-    {url:'https://spravy.pravda.sk/rss/xml',name:'Pravda'},
-    {url:'https://www.ta3.com/rss',name:'TA3'},
-    {url:'https://www.teraz.sk/rss/vsetky-spravy.rss',name:'TASR'},
-    {url:'https://touchit.sk/feed',name:'TouchIT'},
-    {url:'https://www.info.sk/rss/',name:'Info.sk'},
-    {url:'https://www.topky.sk/rss',name:'Topky'},
-    {url:'https://www.dnes24.sk/rss',name:'Dnes24'},
-    {url:'https://zahrada.zoznam.sk/rss/',name:'Záhrada'},
-    {url:'https://www.startitup.sk/feed/',name:'Startitup'},
-    {url:'https://plantex.sk/feed/',name:'Plantex'},
-    {url:'https://hnonline.sk/rss',name:'HNOnline'},
-    {url:'https://www.novinky.cz/rss',name:'Novinky.cz'},
-    {url:'https://www.irozhlas.cz/rss/irozhlas',name:'iROZHLAS'},
-    {url:'https://servis.idnes.cz/rss.aspx?c=zpravodaj',name:'iDNES'},
-    {url:'https://www.aktualne.cz/rss/',name:'Aktuálně.cz'},
-    {url:'https://www.ceskenoviny.cz/sluzby/rss/zpravy.php',name:'ČTK'}
+  const feeds = [
+    "https://touchit.sk/feed",
+    "https://www.ta3.com/rss/5/spravy.html",
+    "https://www.aktuality.sk/rss/",
+    "https://www.zahrada.sk/rss",
+    "https://www.topky.sk/rss/2",
+    "https://spravy.pravda.sk/rss/xml",
+    "https://www.startitup.sk/feed/",
+    "https://www.etrend.sk/rss/index.xml",
+    "https://dennikn.sk/rss",
+    "https://www.info.sk/rss/",
+    "https://vyhladavanie.slov-lex.sk/rss/predpisZbierky"
   ];
-  const feed2json = url=> fetch(`https://www.toptal.com/developers/feed2json/feed?url=${encodeURIComponent(url)}`)
-    .then(r=>r.json()).catch(()=>null);
 
-  let all = [];
-  await Promise.all(FEEDS.map(f=> 
-    feed2json(f.url).then(data=>{
-      if(data?.items) data.items.forEach(i=> all.push({...i,source:f.name}));
-    })
-  ));
+  const container = document.getElementById("rss-feed");
+  let allItems = [], index = 0, PAGE_SIZE = 6;
 
-  all = all.filter((v,i,a)=> a.findIndex(x=>x.link===v.link)===i)
-           .sort((a,b)=> new Date(b.pubDate)-new Date(a.pubDate));
+  async function fetchFeed(feed) {
+    const url = `https://www.toptal.com/developers/feed2json/convert?url=${encodeURIComponent(feed)}`;
+    try {
+      const res = await fetch(url);
+      return await res.json();
+    } catch (e) {
+      console.error("Nepodarilo sa načítať:", feed);
+      return null;
+    }
+  }
 
-  const container = document.getElementById('rss-feed');
-  const loader = container.querySelector('.loading');
-  loader?.remove();
-  let idx=0, PAGE=6;
+  async function loadFeeds() {
+    const results = await Promise.all(feeds.map(fetchFeed));
+    const items = [];
+    results.forEach(feed => {
+      if (!feed?.items) return;
+      feed.items.forEach(item => {
+        items.push({
+          title: item.title,
+          link: item.url,
+          date: new Date(item.date_published || item.published || item.date || Date.now()),
+          content: item.content_text || "",
+          source: feed.title,
+          image: item.image || item.banner_image || ""
+        });
+      });
+    });
 
-  function render(){
-    const slice = all.slice(idx,idx+PAGE);
-    slice.forEach(i=>{
-      const date=new Date(i.pubDate);
-      const card=document.createElement('div');
-      card.className='item-card';
-      card.innerHTML=`
-        ${i.thumbnail? `<img class="item-thumb" src="${i.thumbnail}" alt="">` : ''}
+    // Odstráň duplicity a zoradiť
+    const seen = new Set();
+    allItems = items.filter(i => {
+      if (seen.has(i.link)) return false;
+      seen.add(i.link);
+      return true;
+    }).sort((a, b) => b.date - a.date);
+
+    renderNext();
+    window.addEventListener('scroll', infiniteScroll);
+  }
+
+  function infiniteScroll() {
+    if (window.innerHeight + window.scrollY + 100 >= document.body.offsetHeight) {
+      renderNext();
+    }
+  }
+
+  function renderNext() {
+    const slice = allItems.slice(index, index + PAGE_SIZE);
+    slice.forEach(i => {
+      const card = document.createElement("div");
+      card.className = "item-card";
+      card.innerHTML = `
+        ${i.image ? `<img class="item-thumb" src="${i.image}" alt="">` : ""}
         <div class="item-content">
+          <span class="badge">${i.source}</span>
           <h2><a href="${i.link}" target="_blank">${i.title}</a></h2>
-          <div class="badges">
-            <span class="badge">${date.toLocaleDateString('sk-SK')} ${date.toLocaleTimeString('sk-SK',{hour:'2-digit',minute:'2-digit'})}</span>
-            <span class="badge source">${i.source}</span>
-          </div>
-          <p>${(i.description||'').replace(/<[^>]+>/g,'').slice(0,120)}…</p>
-          <a class="read-more" href="${i.link}" target="_blank">Čítať viac</a>
-        </div>`;
+          <p>${i.content.slice(0, 120)}...</p>
+        </div>
+      `;
       container.appendChild(card);
     });
-    idx+=slice.length;
-    if(idx<all.length) window.addEventListener('scroll',onScroll);
-    else{
-      const end=document.createElement('div');
-      end.className='end-msg'; end.textContent='Žiadne ďalšie správy.';
-      container.appendChild(end);
-    }
+    index += PAGE_SIZE;
+    if (index >= allItems.length) window.removeEventListener('scroll', infiniteScroll);
   }
 
-  function onScroll(){
-    if(window.innerHeight+window.scrollY+100>=document.body.scrollHeight){
-      window.removeEventListener('scroll',onScroll);
-      render();
-    }
-  }
-
-  render();
-})();
+  loadFeeds();
 </script>
