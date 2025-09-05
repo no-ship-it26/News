@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Cestovné poriadky</title>
 <style>
-  /* 🌞 Svetlý režim (default) */
   body {
     margin: 0;
     padding: 20px;
@@ -12,16 +11,17 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     color: #003366;
-    font-size: 18px;
+    font-size: 20px; /* väčší základný text */
+    touch-action: manipulation;
   }
 
   .emoji {
-    font-size: 96px;
+    font-size: 80px;
     margin-bottom: 10px;
   }
 
   h1 {
-    font-size: 48px;
+    font-size: 36px;
     margin: 10px 0 30px;
     color: #1f3b73;
   }
@@ -29,23 +29,23 @@
   .button-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-width: 90%;
+    gap: 16px;
+    max-width: 100%;
     margin: 0 auto;
+    padding: 0 10px;
   }
 
   .sport-button {
-    padding: 16px;
-    font-size: 20px;
+    padding: 18px;
+    font-size: 22px;
     font-weight: bold;
     background-color: #d6e4ff;
     border: 2px solid #003366;
     color: #003366;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.2s ease, transform 0.2s ease;
-    touch-action: manipulation;
   }
 
   .sport-button:hover {
@@ -57,7 +57,7 @@
     transform: scale(0.98);
   }
 
-  /* 🌙 Tmavý režim */
+  /* 🌙 Tmavý režim pre mobil */
   @media (prefers-color-scheme: dark) {
     body {
       background-color: #121212;
@@ -78,26 +78,6 @@
       background-color: #263a4f;
     }
   }
-
-  /* 📱 Mobilná optimalizácia */
-  @media screen and (max-width: 1000px) {
-    body {
-      font-size: 20px;
-    }
-
-    .emoji {
-      font-size: 80px;
-    }
-
-    h1 {
-      font-size: 36px;
-    }
-
-    .sport-button {
-      font-size: 18px;
-      padding: 18px;
-    }
-  }
 </style>
 </head>
 <body>
@@ -116,6 +96,7 @@
 
 </body>
 </html>
+
 
 
 
