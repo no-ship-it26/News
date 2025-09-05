@@ -6,7 +6,7 @@
 <style>
   body {
     margin: 0;
-    padding: 30px 15px;
+    padding: 20px;
     background-color: #e8f0ff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
@@ -14,13 +14,13 @@
   }
 
   .emoji {
-    font-size: 80px;
+    font-size: 64px;
     margin-bottom: 10px;
   }
 
   h1 {
-    font-size: 42px;
-    margin: 10px 0 30px;
+    font-size: 32px;
+    margin: 10px 0 20px;
     color: #1f3b73;
   }
 
@@ -28,21 +28,22 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-width: 320px;
+    max-width: 90%;
     margin: 0 auto;
   }
 
   .sport-button {
-    padding: 12px;
-    font-size: 18px;
+    padding: 14px;
+    font-size: 16px;
     font-weight: bold;
     background-color: #d6e4ff;
     border: 2px solid #003366;
     color: #003366;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.2s ease, transform 0.2s ease;
+    touch-action: manipulation;
   }
 
   .sport-button:hover {
@@ -75,6 +76,22 @@
       background-color: #263a4f;
     }
   }
+
+  /* 📱 Mobilná optimalizácia */
+  @media screen and (max-width: 480px) {
+    .emoji {
+      font-size: 48px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .sport-button {
+      font-size: 15px;
+      padding: 12px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -93,3 +110,4 @@
 
 </body>
 </html>
+
