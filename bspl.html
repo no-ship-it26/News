@@ -3,35 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video s progres barom</title>
+  <title>Načítava sa…</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background: black;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
       height: 100%;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    #video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
-      background: black;
+    #loadingText {
+      font-size: 1.5em;
+      margin-bottom: 20px;
     }
 
     #bufferBar {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
       width: 80%;
       height: 10px;
       appearance: none;
       border-radius: 5px;
       background-color: #333;
       box-shadow: inset 0 0 5px #000;
-      z-index: 10;
     }
 
     #bufferBar::-webkit-progress-bar {
@@ -43,17 +41,30 @@
       background: linear-gradient(to right, #00c3ff, #00ffae);
       border-radius: 5px;
     }
+
+    #video {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: black;
+    }
   </style>
 </head>
 <body>
 
+  <div id="loadingScreen">
+    <div id="loadingText">Načítava sa…</div>
+    <progress id="bufferBar" value="0" max="60"></progress>
+  </div>
+
   <video id="video" muted playsinline controls></video>
-  <progress id="bufferBar" value="0" max="60"></progress>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
     const bufferBar = document.getElementById('bufferBar');
+    const loadingScreen = document.getElementById('loadingScreen');
     const videoSrc = 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8';
 
     let bufferReady = false;
@@ -72,6 +83,8 @@
       setTimeout(() => {
         timerExpired = true;
         if (!bufferReady) {
+          loadingScreen.style.display = 'none';
+          video.style.display = 'block';
           video.play();
         }
       }, 60000);
@@ -85,6 +98,8 @@
 
           if (bufferedSeconds >= 60 && !bufferReady) {
             bufferReady = true;
+            loadingScreen.style.display = 'none';
+            video.style.display = 'block';
             video.play();
           }
         }
@@ -95,4 +110,4 @@
   </script>
 
 </body>
-</html>
+</html>html>
