@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Televízia</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BusTV</title>
   <style>
     html, body {
       margin: 0;
@@ -12,36 +12,63 @@
       color: white;
       font-family: 'Segoe UI', sans-serif;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       overflow: hidden;
     }
 
-    #loadingScreen {
+    .screen {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #introScreen {
+      display: flex;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    #introText {
+      font-size: 3em;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    #channelMenu {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      animation: fadeIn 1s ease-in-out;
+    }
+
+    .channel-btn {
+      background-color: #222;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+
+    .channel-btn:hover {
+      background-color: #00c3ff;
+    }
+
+    #loadingScreen {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
     }
 
     #loadingText {
-      font-size: 1.8em;
-      letter-spacing: 1px;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      display: none; /* skrytý text počas načítavania */
     }
 
     #bufferBar {
@@ -70,12 +97,35 @@
       object-fit: contain;
       background: black;
     }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
 
-  <div id="loadingScreen">
-    <div id="loadingText">Načítava sa</div>
+  <div id="introScreen" class="screen">
+    <div id="introText">BusTV</div>
+  </div>
+
+  <div id="channelMenu" class="screen">
+    <h2>Vyber si kanál</h2>
+    <button class="channel-btn" onclick="switchChannel('original')">🎶 Šlágr Original</button>
+    <button class="channel-btn" onclick="switchChannel('muzika')">🎧 Šlágr Muzika</button>
+    <button class="channel-btn" onclick="switchChannel('premium')">🎼 Šlágr Premium HD</button>
+    <button class="channel-btn" onclick="switchChannel('senzi')">🎤 Senzi HD</button>
+  </div>
+
+  <div id="loadingScreen" class="screen">
+    <div id="loadingText">Načítava sa…</div>
     <progress id="bufferBar" value="0" max="60"></progress>
   </div>
 
@@ -85,20 +135,47 @@
   <script>
     const video = document.getElementById('video');
     const bufferBar = document.getElementById('bufferBar');
+    const introScreen = document.getElementById('introScreen');
+    const channelMenu = document.getElementById('channelMenu');
     const loadingScreen = document.getElementById('loadingScreen');
-    const videoSrc = 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8';
 
+    let hls;
     let bufferReady = false;
     let timerExpired = false;
 
-    function showVideo() {
-      loadingScreen.style.display = 'none';
-      video.style.display = 'block';
-      video.play().catch(err => console.warn('Prehrávanie zlyhalo:', err));
-    }
+    const channels = {
+      original: 'https://stream-13.mazana.tv/slagroriginal.m3u8s',
+      muzika: 'https://stream-23.mazana.tv/slagrmuzika.m3u8s',
+      premium: 'https://stream-17.mazana.tv/slagrpremium.m3u8s',
+      senzi: 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8'
+    };
 
-    if (Hls.isSupported()) {
-      const hls = new Hls({
+    window.onload = () => {
+      introScreen.style.display = 'flex';
+      setTimeout(() => {
+        introScreen.style.display = 'none';
+        channelMenu.style.display = 'flex';
+      }, 3000);
+    };
+
+    function switchChannel(name) {
+      const videoSrc = channels[name];
+      bufferReady = false;
+      timerExpired = false;
+      bufferBar.value = 0;
+
+      channelMenu.style.display = 'none';
+      loadingScreen.style.display = 'flex';
+      video.style.display = 'none';
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+
+      if (hls) {
+        hls.destroy();
+      }
+
+      hls = new Hls({
         maxBufferLength: 120,
         startPosition: -1
       });
@@ -123,8 +200,12 @@
           }
         }
       });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = videoSrc;
+    }
+
+    function showVideo() {
+      loadingScreen.style.display = 'none';
+      video.style.display = 'block';
+      video.play().catch(err => console.warn('Prehrávanie zlyhalo:', err));
     }
   </script>
 
