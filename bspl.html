@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TV Prehrávač pre mobil</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #player-container {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      margin: auto;
+    }
+
+    #video {
+      width: 100%;
+      height: auto;
+      border: 3px solid #00c3ff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00c3ff;
+    }
+
+    #loading {
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #00c3ff;
+    }
+
+    #bufferBar {
+      width: 80%;
+      height: 20px;
+      appearance: none;
+      border-radius: 10px;
+      background-color: #333;
+      overflow: hidden;
+      box-shadow: inset 0 0 5px #000;
+    }
+
+    #bufferBar::-webkit-progress-bar {
+      background-color: #333;
+      border-radius: 10px;
+    }
+
+    #bufferBar::-webkit-progress-value {
+      background: linear-gradient(to right, #00c3ff, #00ffae);
+      border-radius: 10px;
+    }
+
+    #buffer-visual {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: #333;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    #buffer-bar {
+      position: absolute;
+      height: 100%;
+      background: linear-gradient(to right, #00c3ff, #00ffae);
+      width: 0%;
+      transition: width 0.2s ease;
+    }
+
+    #playhead {
+      position: absolute;
+      height: 100%;
+      background-color: #fff;
+      width: 1px;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>TV Prehrávač s prednačítaním</h2>
+
+  <div id="player-container">
+    <video id="video" muted playsinline controls></video>
+    <div id="buffer-visual">
+      <div id="buffer-bar"></div>
+      <div id="playhead"></div>
+    </div>
+  </div>
+
+  <div id="loading">
+    <p>Načítavam video... <span id="progress">0%</span></p>
+    <progress id="bufferBar" value="0" max="60"></progress>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const bufferBar = document.getElementById('bufferBar');
+    const progressText = document.getElementById('progress');
+    const loadingDiv = document.getElementById('loading');
+    const bufferVisual = document.getElementById('buffer-bar');
+    const playhead = document.getElementById('playhead');
+
+    const videoSrc = 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls({
+        maxBufferLength: 120,
+        startPosition: -1
+      });
+
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+
+      hls.on(Hls.Events.BUFFER_APPENDED, function () {
+        const buffered = video.buffered;
+        if (buffered.length) {
+          const bufferedSeconds = buffered.end(0);
+          bufferBar.value = Math.min(bufferedSeconds, 60);
+          progressText.textContent = `${Math.floor((bufferedSeconds / 60) * 100)}%`;
+
+          if (bufferedSeconds >= 60) {
+            loadingDiv.style.display = 'none';
+            video.play();
+          }
+        }
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+    }
+
+    video.addEventListener('timeupdate', () => {
+      const duration = video.duration;
+      const currentTime = video.currentTime;
+      const buffered = video.buffered;
+
+      const playPercent = (currentTime / duration) * 100;
+      playhead.style.left = `${playPercent}%`;
+
+      if (buffered.length) {
+        const bufferEnd = buffered.end(0);
+        const bufferPercent = (bufferEnd / duration) * 100;
+        bufferVisual.style.width = `${bufferPercent}%`;
+      }
+    });
+  </script>
+
+</body>
+</html>
