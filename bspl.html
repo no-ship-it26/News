@@ -27,49 +27,26 @@
       flex-direction: column;
     }
 
-    #introScreen {
-      display: flex;
-      background-color: black;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    #introText {
-      font-size: 3em;
-      font-weight: bold;
-      animation: pulse 2s infinite;
-      margin-bottom: 20px;
-    }
-
-    #cancelBtn {
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    #cancelBtn:hover {
-      background-color: #ff4444;
-    }
-
     #channelMenu {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      flex-direction: row;
+      justify-content: center;
+      gap: 10px;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
     }
 
     .channel-btn {
       background-color: #222;
       color: #fff;
       border: none;
-      padding: 12px 20px;
+      padding: 10px 16px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 1em;
+      font-size: 0.9em;
       transition: background 0.3s;
     }
 
@@ -78,10 +55,12 @@
     }
 
     #loadingScreen {
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       background-color: black;
+      z-index: 99;
     }
 
     #loadingText {
@@ -114,28 +93,11 @@
       object-fit: contain;
       background: black;
     }
-
-    @keyframes pulse {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
-  <div id="introScreen" class="screen">
-    <div id="introText">BusTV</div>
-    <button id="cancelBtn" onclick="cancelPlayer()">Zrušiť</button>
-  </div>
-
-  <div id="channelMenu" class="screen">
-    <h2>Vyber si kanál</h2>
+  <div id="channelMenu">
     <button class="channel-btn" onclick="switchChannel('original')">🎶 Šlágr Original</button>
     <button class="channel-btn" onclick="switchChannel('muzika')">🎧 Šlágr Muzika</button>
     <button class="channel-btn" onclick="switchChannel('premium')">🎼 Šlágr Premium HD</button>
@@ -153,14 +115,11 @@
   <script>
     const video = document.getElementById('video');
     const bufferBar = document.getElementById('bufferBar');
-    const introScreen = document.getElementById('introScreen');
-    const channelMenu = document.getElementById('channelMenu');
     const loadingScreen = document.getElementById('loadingScreen');
 
     let hls;
     let bufferReady = false;
     let timerExpired = false;
-    let introTimeout;
 
     const channels = {
       original: 'https://stream-13.mazana.tv/slagroriginal.m3u8s',
@@ -169,30 +128,12 @@
       senzi: 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8'
     };
 
-    window.onload = () => {
-      introScreen.style.display = 'flex';
-      introTimeout = setTimeout(() => {
-        introScreen.style.display = 'none';
-        channelMenu.style.display = 'flex';
-      }, 3000);
-    };
-
-    function cancelPlayer() {
-      clearTimeout(introTimeout);
-      introScreen.style.display = 'none';
-      channelMenu.style.display = 'none';
-      loadingScreen.style.display = 'none';
-      video.style.display = 'none';
-      document.body.innerHTML = ''; // úplne vyčistí obsah
-    }
-
     function switchChannel(name) {
       const videoSrc = channels[name];
       bufferReady = false;
       timerExpired = false;
       bufferBar.value = 0;
 
-      channelMenu.style.display = 'none';
       loadingScreen.style.display = 'flex';
       video.style.display = 'none';
       video.pause();
@@ -235,6 +176,11 @@
       video.style.display = 'block';
       video.play().catch(err => console.warn('Prehrávanie zlyhalo:', err));
     }
+
+    // Spusti predvolený kanál po načítaní stránky
+    window.onload = () => {
+      switchChannel('original');
+    };
   </script>
 
 </body>
