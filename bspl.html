@@ -10,36 +10,57 @@
       padding: 0;
       background-color: black;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
+    }
+
+    #loadingScreen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeIn 1s ease-in-out;
     }
 
     #loadingText {
-      font-size: 1.5em;
-      margin-bottom: 20px;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     #bufferBar {
       width: 80%;
-      height: 10px;
+      height: 12px;
       appearance: none;
-      border-radius: 5px;
-      background-color: #333;
+      border-radius: 6px;
+      background-color: #222;
       box-shadow: inset 0 0 5px #000;
     }
 
     #bufferBar::-webkit-progress-bar {
-      background-color: #333;
-      border-radius: 5px;
+      background-color: #222;
+      border-radius: 6px;
     }
 
     #bufferBar::-webkit-progress-value {
-      background: linear-gradient(to right, #00c3ff, #00ffae);
-      border-radius: 5px;
+      background: linear-gradient(90deg, #00c3ff, #00ffae);
+      border-radius: 6px;
     }
 
     #video {
@@ -70,6 +91,12 @@
     let bufferReady = false;
     let timerExpired = false;
 
+    function showVideo() {
+      loadingScreen.style.display = 'none';
+      video.style.display = 'block';
+      video.play().catch(err => console.warn('Prehrávanie zlyhalo:', err));
+    }
+
     if (Hls.isSupported()) {
       const hls = new Hls({
         maxBufferLength: 120,
@@ -79,17 +106,11 @@
       hls.loadSource(videoSrc);
       hls.attachMedia(video);
 
-      // Časovač na 60 sekúnd
       setTimeout(() => {
         timerExpired = true;
-        if (!bufferReady) {
-          loadingScreen.style.display = 'none';
-          video.style.display = 'block';
-          video.play();
-        }
+        if (!bufferReady) showVideo();
       }, 60000);
 
-      // Sleduj buffer
       hls.on(Hls.Events.BUFFER_APPENDED, function () {
         const buffered = video.buffered;
         if (buffered.length) {
@@ -98,9 +119,7 @@
 
           if (bufferedSeconds >= 60 && !bufferReady) {
             bufferReady = true;
-            loadingScreen.style.display = 'none';
-            video.style.display = 'block';
-            video.play();
+            showVideo();
           }
         }
       });
@@ -110,4 +129,4 @@
   </script>
 
 </body>
-</html>html>
+</html>
