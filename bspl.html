@@ -29,6 +29,7 @@
 
     #introScreen {
       display: flex;
+      background-color: black;
       animation: fadeIn 1s ease-in-out;
     }
 
@@ -36,6 +37,22 @@
       font-size: 3em;
       font-weight: bold;
       animation: pulse 2s infinite;
+      margin-bottom: 20px;
+    }
+
+    #cancelBtn {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #cancelBtn:hover {
+      background-color: #ff4444;
     }
 
     #channelMenu {
@@ -68,7 +85,7 @@
     }
 
     #loadingText {
-      display: none; /* skrytý text počas načítavania */
+      display: none;
     }
 
     #bufferBar {
@@ -114,6 +131,7 @@
 
   <div id="introScreen" class="screen">
     <div id="introText">BusTV</div>
+    <button id="cancelBtn" onclick="cancelPlayer()">Zrušiť</button>
   </div>
 
   <div id="channelMenu" class="screen">
@@ -142,6 +160,7 @@
     let hls;
     let bufferReady = false;
     let timerExpired = false;
+    let introTimeout;
 
     const channels = {
       original: 'https://stream-13.mazana.tv/slagroriginal.m3u8s',
@@ -152,11 +171,20 @@
 
     window.onload = () => {
       introScreen.style.display = 'flex';
-      setTimeout(() => {
+      introTimeout = setTimeout(() => {
         introScreen.style.display = 'none';
         channelMenu.style.display = 'flex';
       }, 3000);
     };
+
+    function cancelPlayer() {
+      clearTimeout(introTimeout);
+      introScreen.style.display = 'none';
+      channelMenu.style.display = 'none';
+      loadingScreen.style.display = 'none';
+      video.style.display = 'none';
+      document.body.innerHTML = ''; // úplne vyčistí obsah
+    }
 
     function switchChannel(name) {
       const videoSrc = channels[name];
