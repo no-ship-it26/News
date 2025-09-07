@@ -112,7 +112,6 @@
     <button class="channel-btn" onclick="switchChannel('muzika')">🎧 Šlágr Muzika</button>
     <button class="channel-btn" onclick="switchChannel('premium')">🎼 Šlágr Premium HD</button>
     <button class="channel-btn" onclick="switchChannel('senzi')">🎤 Senzi HD</button>
-    <button class="channel-btn" onclick="switchChannel('barrandov')">📺 Barrandov TV</button>
   </div>
 
   <div id="playerOverlay">
@@ -139,8 +138,7 @@
       original: 'https://stream-13.mazana.tv/slagroriginal.m3u8s',
       muzika: 'https://stream-23.mazana.tv/slagrmuzika.m3u8s',
       premium: 'https://stream-17.mazana.tv/slagrpremium.m3u8s',
-      senzi: 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8',
-      barrandov: 'http://212.102.38.45/live/test_barrandov/playlist.m3u8'
+      senzi: 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8'
     };
 
     function switchChannel(name) {
@@ -191,7 +189,7 @@
     function showVideo() {
       loadingScreen.style.display = 'none';
       video.style.display = 'block';
-      video.muted = false; // zvuk zapnutý
+      video.muted = false;
       video.play().catch(err => console.warn('Prehrávanie zlyhalo:', err));
     }
 
