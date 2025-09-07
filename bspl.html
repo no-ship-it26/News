@@ -3,112 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TV Prehrávač pre mobil</title>
+  <title>Video s progres barom</title>
   <style>
-    body {
-      background-color: #111;
-      color: #eee;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-
-    #player-container {
-      position: relative;
-      width: 100%;
-      max-width: 640px;
-      margin: auto;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      height: 100%;
+      overflow: hidden;
     }
 
     #video {
-      width: 100%;
-      height: auto;
-      border: 3px solid #00c3ff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #00c3ff;
-    }
-
-    #loading {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #00c3ff;
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      background: black;
     }
 
     #bufferBar {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 80%;
-      height: 20px;
+      height: 10px;
       appearance: none;
-      border-radius: 10px;
+      border-radius: 5px;
       background-color: #333;
-      overflow: hidden;
       box-shadow: inset 0 0 5px #000;
+      z-index: 10;
     }
 
     #bufferBar::-webkit-progress-bar {
       background-color: #333;
-      border-radius: 10px;
+      border-radius: 5px;
     }
 
     #bufferBar::-webkit-progress-value {
       background: linear-gradient(to right, #00c3ff, #00ffae);
-      border-radius: 10px;
-    }
-
-    #buffer-visual {
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background-color: #333;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    #buffer-bar {
-      position: absolute;
-      height: 100%;
-      background: linear-gradient(to right, #00c3ff, #00ffae);
-      width: 0%;
-      transition: width 0.2s ease;
-    }
-
-    #playhead {
-      position: absolute;
-      height: 100%;
-      background-color: #fff;
-      width: 1px;
-      left: 0;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
 
-  <h2>TV Prehrávač s prednačítaním</h2>
-
-  <div id="player-container">
-    <video id="video" muted playsinline controls></video>
-    <div id="buffer-visual">
-      <div id="buffer-bar"></div>
-      <div id="playhead"></div>
-    </div>
-  </div>
-
-  <div id="loading">
-    <p>Načítavam video... <span id="progress">0%</span></p>
-    <progress id="bufferBar" value="0" max="60"></progress>
-  </div>
+  <video id="video" muted playsinline controls></video>
+  <progress id="bufferBar" value="0" max="60"></progress>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
     const bufferBar = document.getElementById('bufferBar');
-    const progressText = document.getElementById('progress');
-    const loadingDiv = document.getElementById('loading');
-    const bufferVisual = document.getElementById('buffer-bar');
-    const playhead = document.getElementById('playhead');
-
     const videoSrc = 'https://lb.streaming.sk/senzi/stream/chunklist_w399090268.m3u8';
+
+    let bufferReady = false;
+    let timerExpired = false;
 
     if (Hls.isSupported()) {
       const hls = new Hls({
@@ -119,15 +68,23 @@
       hls.loadSource(videoSrc);
       hls.attachMedia(video);
 
+      // Časovač na 60 sekúnd
+      setTimeout(() => {
+        timerExpired = true;
+        if (!bufferReady) {
+          video.play();
+        }
+      }, 60000);
+
+      // Sleduj buffer
       hls.on(Hls.Events.BUFFER_APPENDED, function () {
         const buffered = video.buffered;
         if (buffered.length) {
           const bufferedSeconds = buffered.end(0);
           bufferBar.value = Math.min(bufferedSeconds, 60);
-          progressText.textContent = `${Math.floor((bufferedSeconds / 60) * 100)}%`;
 
-          if (bufferedSeconds >= 60) {
-            loadingDiv.style.display = 'none';
+          if (bufferedSeconds >= 60 && !bufferReady) {
+            bufferReady = true;
             video.play();
           }
         }
@@ -135,21 +92,6 @@
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = videoSrc;
     }
-
-    video.addEventListener('timeupdate', () => {
-      const duration = video.duration;
-      const currentTime = video.currentTime;
-      const buffered = video.buffered;
-
-      const playPercent = (currentTime / duration) * 100;
-      playhead.style.left = `${playPercent}%`;
-
-      if (buffered.length) {
-        const bufferEnd = buffered.end(0);
-        const bufferPercent = (bufferEnd / duration) * 100;
-        bufferVisual.style.width = `${bufferPercent}%`;
-      }
-    });
   </script>
 
 </body>
