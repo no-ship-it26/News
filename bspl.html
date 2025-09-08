@@ -108,11 +108,11 @@
 
   <div id="channelMenu">
     <h2>Vyber si kanál</h2>
-    <button class="channel-btn" onclick="switchChannel('jojnews')">🎶 JOJ 24 HD</button>
-    <button class="channel-btn" onclick="switchChannel('original')">🎶 Šlágr Original</button>
-    <button class="channel-btn" onclick="switchChannel('muzika')">🎧 Šlágr Muzika</button>
-    <button class="channel-btn" onclick="switchChannel('premium')">🎼 Šlágr Premium HD</button>
-    <button class="channel-btn" onclick="switchChannel('senzi')">🎤 Senzi HD</button>
+    <button class="channel-btn" onclick="switchChannel('markiza')">Markíza HD</button>
+    <button class="channel-btn" onclick="switchChannel('original')">Šlágr Original</button>
+    <button class="channel-btn" onclick="switchChannel('muzika')">Šlágr Muzika</button>
+    <button class="channel-btn" onclick="switchChannel('premium')">Šlágr Premium HD</button>
+    <button class="channel-btn" onclick="switchChannel('senzi')">Senzi HD</button>
   </div>
 
   <div id="playerOverlay">
@@ -136,7 +136,7 @@
     let timerExpired = false;
 
     const channels = {
-      jojnews: 'https://live.cdn.joj.sk/live/andromeda/joj_news-720.m3u8',
+      markiza: 'https://cdnsk003.panaccess.com/local/Markiza/index.m3u8',
       original: 'https://stream-13.mazana.tv/slagroriginal.m3u8s',
       muzika: 'https://stream-23.mazana.tv/slagrmuzika.m3u8s',
       premium: 'https://stream-17.mazana.tv/slagrpremium.m3u8s',
