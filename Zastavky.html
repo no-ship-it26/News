@@ -1,97 +1,76 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <title>Zastávky</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 60px;
-      background-color: #e8f0ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
-      color: #003366;
-      font-size: 78px;
-      touch-action: manipulation;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Zastávky</title>
+<style>
+body {
+  margin: 20px;
+  padding: 20px;
+  background-color: #e8f0ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: #003366;
+  font-size: 24px; /* pôvodne 78px */
+  touch-action: manipulation;
+}
 
-    .emoji {
-      font-size: 200px;
-      margin-bottom: 40px;
-    }
+.emoji {
+  font-size: 80px; /* pôvodne 200px */
+  margin-bottom: 20px; /* pôvodne 40px */
+}
 
-    h1 {
-      font-size: 72px;
-      margin: 15px 0 40px;
-      color: #1f3b73;
-    }
+h1 {
+  font-size: 36px; /* pôvodne 72px */
+  margin: 10px 0 20px; /* pôvodne 15px 0 40px */
+  color: #1f3b73;
+}
 
-  h2 {
-    margin: 40px 0 20px;
-    font-size: 46px;
-    font-weight: bold;
-    color: #ccc;
-    border-bottom: 2px solid #333;
-    display: inline-block;
-    padding-bottom: 6px;
-  }
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+h2 {
+  margin: 20px 0 10px; /* pôvodne 40px 0 20px */
+  font-size: 24px; /* pôvodne 46px */
+  font-weight: bold;
+  color: #333; /* pôvodne #ccc */
+  border-bottom: 2px solid #333;
+  display: inline-block;
+  padding-bottom: 4px; /* pôvodne 6px */
+}
 
-    .sport-button {
-      padding: 40px;
-      font-size: 66px;
-      font-weight: bold;
-      background-color: #d6e4ff;
-      border: 2px solid #003366;
-      color: #003366;
-      border-radius: 12px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* pôvodne 40px */
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 10px; /* pôvodne 0 20px */
+}
 
-    .sport-button:hover {
-      background-color: #c0d4ff;
-      transform: scale(1.02);
-    }
+.sport-button {
+  padding: 20px; /* pôvodne 40px */
+  font-size: 28px; /* pôvodne 66px */
+  font-weight: bold;
+  background-color: #d6e4ff;
+  border: 2px solid #003366;
+  color: #003366;
+  border-radius: 8px; /* pôvodne 12px */
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
-    .sport-button:active {
-      transform: scale(0.98);
-    }
+.sport-button:hover {
+  background-color: #c0d4ff;
+  transform: scale(1.02);
+}
 
-    /* 🌙 Tmavý režim */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-
-      h1 {
-        color: #bbdefb;
-      }
-
-      .sport-button {
-        background-color: #1e2a38;
-        border-color: #90caf9;
-        color: #90caf9;
-      }
-
-      .sport-button:hover {
-        background-color: #263a4f;
-      }
-    }
-  </style>
+.sport-button:active {
+  transform: scale(0.98);
+}
+</style>
 </head>
 <body>
 
-  <!-- Emoji namiesto obrázka -->
   <div class="emoji">🚏</div>
 
   <h1>Zastávky</h1>
