@@ -3,97 +3,93 @@
 <head>
   <meta charset="UTF-8">
   <title>Cestovné poriadky</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      background-color: #e8f0ff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #003366;
-      touch-action: manipulation;
+<style>
+  body {
+    margin: 0;
+    padding: 16px;
+    background: #1a1818;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+    text-align: center;
+  }
+
+  .emoji {
+    font-size: 120px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #eee;
+  }
+
+  h2 {
+    margin: 40px 0 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ccc;
+    border-bottom: 2px solid #333;
+    display: inline-block;
+    padding-bottom: 6px;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 14px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .fancy-button {
+    display: block;
+    width: 80%; 
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #3ad07b;
+    color: black;
+    text-decoration: none;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.25s ease;
+  }
+
+  .fancy-button:hover {
+    background-color: #2fa766;
+    color: #fff;
+    box-shadow: 0 0 16px rgba(58, 208, 123, 0.6);
+    transform: scale(1.03);
+  }
+
+  .fancy-button:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 360px) {
+    .fancy-button {
+      font-size: 20px;
+      padding: 16px;
     }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-sizing: border-box;
-      padding: 40px;
-    }
-
-    h1 {
-      font-size: clamp(48px, 8vw, 80px);
-      margin-bottom: 40px;
-      color: #1f3b73;
-    }
-
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      width: 100%;
-      max-width: 700px;
-    }
-
-    .sport-button {
-      display: block;
-      width: 80%;
-      padding: clamp(20px, 4vw, 50px);
-      font-size: clamp(28px, 6vw, 50px);
-      font-weight: bold;
-      background-color: #d6e4ff;
-      border: 2px solid #003366;
-      color: #003366;
-      border-radius: 16px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .sport-button:hover {
-      background-color: #c0d4ff;
-      transform: scale(1.02);
-    }
-
-    .sport-button:active {
-      transform: scale(0.98);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-
-      h1 {
-        color: #bbdefb;
-      }
-
-      .sport-button {
-        background-color: #1e2a38;
-        border-color: #90caf9;
-        color: #90caf9;
-      }
-
-      .sport-button:hover {
-        background-color: #263a4f;
-      }
-    }
-  </style>
+    h1 { font-size: 32px; }
+    h2 { font-size: 22px; }
+  }
+</style>
 </head>
 <body>
   <div>
     <h1>Doprava</h1>
     <div class="button-container">
-      <a href="https://no-ship-it26.github.io/News/Zastavky.html" class="sport-button" target="_blank">Zastávky</a>
-      <a href="https://no-ship-it26.github.io/News/Vlaky.html" class="sport-button" target="_blank">Vlaky</a>
-      <a href="https://no-ship-it26.github.io/News/Cesty.html" class="sport-button" target="_blank">Stav ciest</a>
-      <a href="https://imhd.sk/ba/cestovne-poriadky" class="sport-button" target="_blank">imhd.sk</a>
+      <a href="https://no-ship-it26.github.io/News/Zastavky.html" class="fancy-button" target="_blank">Zastávky</a>
+      <a href="https://no-ship-it26.github.io/News/Vlaky.html" class="fancy-button" target="_blank">Vlaky</a>
+      <a href="https://no-ship-it26.github.io/News/Cesty.html" class="fancy-button" target="_blank">Stav ciest</a>
+      <a href="https://imhd.sk/ba/cestovne-poriadky" class="fancy-button" target="_blank">imhd.sk</a>
     </div>
   </div>
 </body>
