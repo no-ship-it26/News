@@ -4,41 +4,52 @@
   <meta charset="UTF-8">
   <title>Cestovné poriadky</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      padding: 60px;
+      padding: 0;
+      height: 100%;
+      overflow: hidden; /* 🚫 Skryje scrollbar */
       background-color: #e8f0ff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-align: center;
       color: #003366;
-      font-size: 78px;
       touch-action: manipulation;
     }
 
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertikálne vycentrovanie */
+      align-items: center;     /* horizontálne vycentrovanie */
+      text-align: center;
+      box-sizing: border-box;
+      padding: 40px;
+    }
 
     h1 {
-      font-size: 72px;
-      margin: 15px 0 40px;
+      font-size: 5vw;
+      margin-bottom: 40px;
       color: #1f3b73;
     }
 
     .button-container {
       display: flex;
       flex-direction: column;
-      gap: 40px;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0 20px;
+      gap: 30px;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
     }
 
     .sport-button {
-      padding: 40px;
-      font-size: 66px;
+      display: block;
+      width: 80%;
+      padding: 3vw;
+      font-size: 3.5vw;
       font-weight: bold;
       background-color: #d6e4ff;
       border: 2px solid #003366;
       color: #003366;
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.2s ease, transform 0.2s ease;
@@ -51,6 +62,22 @@
 
     .sport-button:active {
       transform: scale(0.98);
+    }
+
+    /* 📱 Mobilné zariadenia */
+    @media (max-width: 600px) {
+      h1 { font-size: 7vw; }
+      .sport-button { font-size: 6vw; padding: 5vw; width: 90%; }
+    }
+
+    /* 💻 Väčšie obrazovky (PC, notebooky) */
+    @media (min-width: 900px) {
+      h1 { font-size: 60px; }
+      .sport-button {
+        font-size: 36px;
+        padding: 30px 50px;
+        width: 400px;
+      }
     }
 
     /* 🌙 Tmavý režim */
@@ -77,18 +104,14 @@
   </style>
 </head>
 <body>
-
-
-  <h1>Doprava</h1>
-
-  <div class="button-container">
-    <a href="https://no-ship-it26.github.io/News/Zastavky.html" class="sport-button" target="_blank">Zastávky</a>
-    <a href="https://no-ship-it26.github.io/News/Vlaky.html" class="sport-button" target="_blank">Vlaky</a>
-    <a href="https://no-ship-it26.github.io/News/Cesty.html" class="sport-button" target="_blank">Stav ciest</a>
-    <a href="https://imhd.sk/ba/cestovne-poriadky" class="sport-button" target="_blank">imhd.sk</a>
-
-
+  <div>
+    <h1>Doprava</h1>
+    <div class="button-container">
+      <a href="https://no-ship-it26.github.io/News/Zastavky.html" class="sport-button" target="_blank">Zastávky</a>
+      <a href="https://no-ship-it26.github.io/News/Vlaky.html" class="sport-button" target="_blank">Vlaky</a>
+      <a href="https://no-ship-it26.github.io/News/Cesty.html" class="sport-button" target="_blank">Stav ciest</a>
+      <a href="https://imhd.sk/ba/cestovne-poriadky" class="sport-button" target="_blank">imhd.sk</a>
+    </div>
   </div>
-
 </body>
 </html>
