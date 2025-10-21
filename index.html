@@ -3,60 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>Cestovné poriadky</title>
+<title>Vlaky</title>
 <style>
   body {
     margin: 0;
-    padding: 16px;
-    height: 100vh;
-    background: #e8f0ff;
+    padding: 40px 20px;
+    background-color: #e8f0ff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #003366;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+    color: #003366;
+    min-height: 100vh;
+  }
+
+  .emoji {
+    font-size: 200px;
+    margin-bottom: 40px;
   }
 
   h1 {
-    margin-bottom: 24px;
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 72px;
+    margin: 15px 0 40px;
     color: #1f3b73;
   }
 
   .button-container {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    gap: 20px;
+    gap: 40px;
     width: 100%;
-    max-width: 500px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 10px;
   }
 
   .fancy-button {
     display: block;
-    width: 80%; 
-    padding: 20px;
-    font-size: 28px;
+    width: 100%;
+    padding: 50px;
+    font-size: 66px;
     font-weight: bold;
     background-color: #d6e4ff;
-    color: #003366;
-    text-decoration: none;
-    border-radius: 12px;
-    text-align: center;
     border: 2px solid #003366;
+    color: #003366;
+    border-radius: 16px;
+    text-decoration: none;
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
 
   .fancy-button:hover {
     background-color: #c0d4ff;
-    transform: scale(1.03);
+    transform: scale(1.02);
   }
 
   .fancy-button:active {
-    transform: scale(0.97);
+    transform: scale(0.98);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -80,23 +80,26 @@
     }
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 480px) {
+    .emoji { font-size: 140px; }
+    h1 { font-size: 48px; }
     .fancy-button {
-      font-size: 22px;
-      padding: 16px;
+      font-size: 42px;
+      padding: 30px;
     }
-    h1 { font-size: 36px; }
   }
 </style>
 </head>
 <body>
   <div>
-    <h1>Doprava</h1>
+    <div class="emoji">🚆</div>
+    <h1>Vlaky</h1>
     <div class="button-container">
-      <a href="https://no-ship-it26.github.io/News/Zastavky.html" class="fancy-button" target="_blank">Zastávky</a>
-      <a href="https://no-ship-it26.github.io/News/Vlaky.html" class="fancy-button" target="_blank">Vlaky</a>
-      <a href="https://no-ship-it26.github.io/News/Cesty.html" class="fancy-button" target="_blank">Stav ciest</a>
-      <a href="https://imhd.sk/ba/cestovne-poriadky" class="fancy-button" target="_blank">imhd.sk</a>
+      <a href="https://www.cp.sk/" class="fancy-button" target="_blank">CP.sk</a>
+      <a href="https://idos.idnes.cz/vlaky/spojeni/" class="fancy-button" target="_blank">IDOS</a>
+      <a href="https://www.zssk.sk/" class="fancy-button" target="_blank">ZSSK</a>
+      <a href="https://regiojet.sk/" class="fancy-button" target="_blank">RegioJet</a>
+      <a href="https://www.leoexpress.com/sk" class="fancy-button" target="_blank">Leo Express</a>
     </div>
   </div>
 </body>
