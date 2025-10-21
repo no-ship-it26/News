@@ -1,88 +1,76 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <title>Vlaky</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Vlaky</title>
   <style>
     body {
-      margin: 0;
-      padding: 60px;
-      background-color: #e8f0ff;
+      margin: 20px;
+      padding: 20px;
+      background-color: #121212; /* tmavé pozadie */
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      color: #003366;
-      font-size: 78px;
+      color: #e0e0e0; /* svetlý text */
+      font-size: 24px;
       touch-action: manipulation;
     }
 
     .emoji {
-      font-size: 200px;
-      margin-bottom: 40px;
+      font-size: 80px;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 72px;
-      margin: 15px 0 40px;
-      color: #1f3b73;
+      font-size: 36px;
+      margin: 10px 0 20px;
+      color: #bbdefb;
+    }
+
+    h2 {
+      margin: 20px 0 10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #ccc;
+      border-bottom: 2px solid #90caf9;
+      display: inline-block;
+      padding-bottom: 4px;
     }
 
     .button-container {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 20px;
       max-width: 100%;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 10px;
     }
 
     .sport-button {
-      padding: 40px;
-      font-size: 66px;
+      padding: 20px;
+      font-size: 28px;
       font-weight: bold;
-      background-color: #d6e4ff;
-      border: 2px solid #003366;
-      color: #003366;
-      border-radius: 12px;
+      background-color: #1e2a38;
+      border: 2px solid #90caf9;
+      color: #90caf9;
+      border-radius: 8px;
       cursor: pointer;
       text-decoration: none;
       transition: background-color 0.2s ease, transform 0.2s ease;
     }
 
     .sport-button:hover {
-      background-color: #c0d4ff;
+      background-color: #263a4f;
       transform: scale(1.02);
     }
 
     .sport-button:active {
       transform: scale(0.98);
     }
-
-    /* 🌙 Tmavý režim */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #121212;
-        color: #e0e0e0;
-      }
-
-      h1 {
-        color: #bbdefb;
-      }
-
-      .sport-button {
-        background-color: #1e2a38;
-        border-color: #90caf9;
-        color: #90caf9;
-      }
-
-      .sport-button:hover {
-        background-color: #263a4f;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Emoji namiesto obrázka -->
   <div class="emoji">🛤️</div>
 
   <h1>Vlaky</h1>
