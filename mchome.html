@@ -14,8 +14,6 @@
     --radius: 12px;
     --gap: 1rem;
     --shadow: rgba(0,0,0,0.6);
-    --loading-bg: #2a3f31;
-    --error-bg: #442222;
   }
 
   * {
@@ -49,15 +47,15 @@
   /* HLAVIČKA */
   .main-title {
     text-align: center;
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: bold;
     background: linear-gradient(135deg, #64B5F6 0%, #1db954 50%, #e91e63 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    padding: 24px 10px 14px;
-    margin: 0 0 10px 0;
+    padding: 16px 10px 12px;
+    margin: 0 0 16px 0;
     animation: gradientShift 4s ease infinite;
   }
 
@@ -70,12 +68,12 @@
   /* HODINY */
   .clock-container {
     text-align: center;
-    padding: 12px 10px 14px;
-    margin-bottom: 10px;
+    padding: 10px 10px;
+    margin-bottom: 16px;
   }
 
   .clock-display {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: #ffffff;
     font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -86,400 +84,188 @@
   /* NAVIGAČNÉ TLAČIDLÁ */
   .nav-buttons-container {
     display: flex;
-    gap: 14px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 18px 10px;
-    margin-bottom: 14px;
+    padding: 12px 8px;
+    margin-bottom: 20px;
   }
 
   .nav-action-btn {
-    padding: 16px 24px;
+    padding: 10px 20px;
     border: 2px solid transparent;
     background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
     color: white;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
-    min-width: 110px;
+    justify-content: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 90px;
+    max-width: 110px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-action-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(29, 185, 84, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .nav-action-btn:hover::before {
-    left: 100%;
+    line-height: 1.2;
   }
 
   .nav-action-btn:hover {
     border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
-  }
-
-  /* VYHĽADÁVANIE A FILTER */
-  .controls-container {
-    max-width: 1200px;
-    margin: 0 auto 20px;
-    padding: 0 1rem;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .search-input {
-    flex: 1;
-    min-width: 250px;
-    max-width: 400px;
-    padding: 12px 16px;
-    background: var(--card-bg);
-    border: 2px solid transparent;
-    border-radius: 10px;
-    color: var(--text);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .search-input:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
-  }
-
-  .stats {
-    padding: 12px 16px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    color: var(--muted);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
   }
 
   /* SEKCIE */
   .webhome-section {
-    padding: 18px 10px;
-    margin-bottom: 14px;
-    text-align: center;
+    margin-bottom: 32px;
+    padding: 0 8px;
   }
 
   .section-heading {
-    font-weight: 600;
-    font-size: 1.35rem;
-    margin-bottom: 14px;
-    color: #64B5F6;
     text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 16px 0;
+    color: white;
+    margin: 0 0 16px 0;
   }
 
   .web-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+    gap: 8px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2px;
   }
 
   .web-btn {
-    padding: 14px 20px;
+    padding: 10px 8px;
     border: 2px solid transparent;
     background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
     color: white;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 0.85rem;
     transition: all 0.3s ease;
     text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 9px;
-    min-width: 105px;
+    justify-content: center;
+    gap: 6px;
+    min-height: 95px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
+    text-align: center;
+    line-height: 1.3;
   }
 
   .web-btn::before {
     content: '📺';
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    display: block;
   }
 
   .radio-btn::before {
     content: '📻';
   }
 
-  .web-btn::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(29, 185, 84, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .web-btn:hover::after {
-    left: 100%;
-  }
-
   .web-btn:hover {
     border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
   }
 
-  /* SPRÁVY */
-  #rss-feed {
-    max-width: 1200px;
-    margin: 1rem auto;
-    padding: 0 1rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--gap);
-  }
-
-  .item-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(29, 185, 84, 0.1);
-    border-radius: var(--radius);
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 12px var(--shadow);
-    transition: all 0.3s ease;
-    opacity: 0;
-    animation: fadeIn 0.5s forwards;
-    overflow: hidden;
-  }
-
-  .item-card:hover { 
-    transform: translateY(-4px); 
-    box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
-    border-color: var(--accent);
-  }
-
-  .item-thumb {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: #252525;
-  }
-
-  video.item-thumb {
-    height: 220px;
-  }
-
-  .item-content { 
-    padding: 1.2rem; 
-    display: flex; 
-    flex-direction: column; 
-    flex: 1; 
-  }
-
-  .item-content h2 { 
-    margin: 0 0 0.75rem; 
-    font-size: 1.25rem; 
-    color: var(--text);
-    line-height: 1.4;
-  }
-
-  .item-content h2 a { 
-    text-decoration: none; 
-    color: inherit;
-    transition: color 0.2s;
-  }
-
-  .item-content h2 a:hover {
-    color: var(--accent);
-  }
-
-  .badges { 
-    display: flex; 
-    gap: 0.5rem; 
-    margin-bottom: 0.75rem; 
-    flex-wrap: wrap; 
-  }
-
-  .badge { 
-    font-size: 0.75rem; 
-    padding: 4px 8px; 
-    background: var(--accent); 
-    color: #fff; 
-    border-radius: 6px;
-    font-weight: 500;
-  }
-
-  .badge.source { 
-    background: #444; 
-  }
-
-  .badge.today {
-    background: #278a50;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  .item-content p { 
-    flex: 1; 
-    margin: 0 0 1rem; 
-    font-size: 0.95rem; 
-    color: var(--muted); 
-    line-height: 1.6; 
-  }
-
-  .read-more-btn { 
-    width: 100%; 
-    max-width: 200px; 
-    margin: 0 auto; 
-    padding: 0.6rem 1rem; 
-    font-size: 0.9rem; 
-    background: var(--accent); 
-    color: #fff; 
-    border-radius: 8px; 
-    text-align: center; 
-    font-weight: 600; 
-    text-decoration: none; 
-    transition: all 0.3s ease; 
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    border: 2px solid var(--accent);
-  }
-
-  .read-more-btn:hover { 
-    background: transparent;
-    color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.4);
-  }
-
-  .message-box {
-    grid-column: 1 / -1;
-    text-align: center;
-    color: var(--text);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin: var(--gap) 0;
-    font-size: 1rem;
-    box-shadow: 0 2px 6px var(--shadow);
-  }
-
-  .loading-msg { 
-    background: var(--loading-bg); 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 8px; 
-    height: 60px; 
-  }
-
-  .error-msg { 
-    background: var(--error-bg);
-    font-weight: 600;
-  }
-
-  .end-msg {
-    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  .no-results {
-    background: var(--card-bg);
-    color: var(--muted);
-  }
-
-  .dot {
-    width: 12px; 
-    height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: blink 1.4s infinite both;
-  }
-
-  .dot:nth-child(1) { animation-delay: 0s; }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes blink {
-    0%, 80%, 100% { opacity: 0; transform: scale(0.8); }
-    40% { opacity: 1; transform: scale(1.2); }
-  }
-
-  @keyframes fadeIn { 
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* MOBILNÉ ZARIADENIA */
-  @media (max-width: 768px) {
-    body {
-      font-size: 105%;
-    }
-
+  /* RESPONSIVE */
+  @media (min-width: 768px) {
     .main-title {
-      font-size: 2.1rem;
-      padding: 18px 10px 12px;
+      font-size: 2.6rem;
+      padding: 24px 10px 14px;
+      margin-bottom: 20px;
     }
 
     .clock-display {
-      font-size: 1.4rem;
+      font-size: 1.6rem;
+    }
+
+    .clock-container {
+      margin-bottom: 20px;
     }
 
     .nav-buttons-container {
-      gap: 12px;
-      padding: 14px 10px;
+      gap: 20px;
+      padding: 20px;
+      margin-bottom: 40px;
     }
 
     .nav-action-btn {
-      padding: 14px 18px;
-      font-size: 1rem;
-      min-width: 100px;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      gap: 8px;
+      flex: 0 0 auto;
+      min-width: 130px;
+      max-width: none;
+    }
+
+    .section-heading {
+      font-size: 1.4rem;
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
+
+    .webhome-section {
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+
+    .web-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      padding: 0;
     }
 
     .web-btn {
-      padding: 12px 16px;
-      font-size: 0.95rem;
-      min-width: 95px;
+      padding: 18px 16px;
+      font-size: 1.05rem;
+      gap: 12px;
+      min-height: 140px;
     }
 
-    .controls-container {
-      flex-direction: column;
+    .web-btn::before {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .web-buttons {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 6px;
+      padding: 0 4px;
     }
 
-    .search-input {
-      max-width: 100%;
+    .nav-buttons-container {
+      gap: 8px;
+      padding: 10px 6px;
+      margin-bottom: 16px;
     }
 
-    #rss-feed {
-      grid-template-columns: 1fr;
-      padding: 0 0.5rem;
+    .nav-action-btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      min-width: 80px;
+      max-width: 100px;
     }
 
-    .item-content h2 {
-      font-size: 1.15rem;
+    .webhome-section {
+      margin-bottom: 28px;
+      padding: 0 4px;
+    }
+
+    .section-heading {
+      padding: 12px 0;
+      margin-bottom: 12px;
     }
   }
 </style>
@@ -495,42 +281,41 @@
 </div>
 
 <!-- NAVIGAČNÉ TLAČIDLÁ -->
-<div class="nav-buttons-container">
-  <button class="nav-action-btn" onclick="scrollToNews()">📰<br>Správy</button>
-  <button class="nav-action-btn" onclick="window.open('https://pocasie.sk', '_blank')">🌤️<br>Počasie</button>
-  <button class="nav-action-btn" onclick="window.open('https://youtube.com', '_blank')">📺<br>YouTube</button>
-  <button class="nav-action-btn" onclick="window.open('https://stream.cz', '_blank')">🎬<br>stream.cz</button>
+<div class="webhome-section">
+  <div class="section-heading">Ponuka</div>
+  <div class="web-buttons">
+    <a href="https://no-ship-it26.github.io/webcenter/radio" target="_blank" class="web-btn radio-btn">Rádio</a>
+    <a href="https://zelenavlna.slovanet.sk/zelenavlna/zv.mp3" target="_blank" class="web-btn radio-btn">STVR Zelená vlna</a>
+    <a href="https://youtube.com" target="_blank" class="web-btn">YouTube</a>
+    <a href="https://stream.cz" target="_blank" class="web-btn">Stream.cz</a>
+  </div>
 </div>
 
 <!-- TV STANICE -->
 <div class="webhome-section">
-  <div class="section-heading">📺 Obľúbené TV stanice</div>
+  <div class="section-heading">Obľúbené TV stanice</div>
   <div class="web-buttons">
     <a href="intent://212.102.38.45/live/test_jednotka_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Jednotka HD</a>
-    <a href="intent://cdnsk003.panaccess.com/local/Markiza/index.m3u8#Intent;scheme=https;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Markíza</a>
-    <a href="intent://212.102.38.45/live/test_joj_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">JOJ</a>
-    <a href="intent://212.102.38.45/live/test_ta3_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">TA3</a>
-  </div>
-</div>
-
-<!-- RÁDIOVÉ STANICE -->
-<div class="webhome-section">
-  <div class="section-heading">📻 Obľúbené rádiové stanice</div>
-  <div class="web-buttons">
-    <a href="https://dash3.antik.sk/live/test_slovensko_radio/playlist.m3u8" target="_blank" class="web-btn radio-btn">Rádio Slovensko</a>
-  </div>
-</div>
-
-<!-- VYHĽADÁVANIE A ŠTATISTIKY -->
-<div class="controls-container">
-  <input type="text" id="search-input" class="search-input" placeholder="🔍 Vyhľadať v správach...">
-  <div class="stats" id="stats">📊 Načítavam...</div>
-</div>
-
-<!-- SPRÁVY -->
-<div id="rss-feed">
-  <div class="message-box loading-msg">
-    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <a href="intent://212.102.38.45/live/test_dvojka_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Dvojka HD</a>
+    <a href="intent://212.102.38.45/live/test_trojka_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">STVR 24 HD</a>
+    <a href="intent://cdnsk003.panaccess.com/local/Markiza/index.m3u8#Intent;scheme=https;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Markíza HD</a>
+    <a href="intent://212.102.38.45/live/test_joj_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">JOJ HD</a>
+    <a href="intent://212.102.38.45/live/test_joj_24_atk_tv/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">JOJ 24 HD</a>
+    <a href="intent://212.102.38.45/live/test_ta3_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">TA3 HD</a>
+    <a href="intent://212.102.38.45/live/test_ct1_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">ČT1 HD</a>
+    <a href="intent://212.102.38.45/live/ct2_ts/index.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">ČT2 HD</a>
+    <a href="intent://212.102.38.45/live/nova_avc_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Nova HD</a>
+    <a href="intent://212.102.38.45/live/prima_avc_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Prima HD</a>
+    <a href="intent://212.102.38.45/live/nova_cinema_avc_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Nova Cinema HD</a>
+    <a href="intent://212.102.38.45/live/prima_max_ts/index.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Prima Max HD</a>
+    <a href="intent://212.102.38.45/live/prima_zoom_avc_25p/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Prima Zoom HD</a>
+    <a href="intent://212.102.38.45/live/test_barrandov/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">TV Barrandov HD</a>
+    <a href="intent://212.102.38.45/live/test_kino_barrandov_sd_hevc50/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Kino Barrandov HD</a>
+    <a href="intent://212.102.38.45/live/test_barrandov_plus_atk_1200/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">iVysílání</a>
+    <a href="intent://lb.streaming.sk/senzi/stream/playlist.m3u8#Intent;scheme=https;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Senzi HD</a>
+    <a href="intent://212.102.38.45/live/test_slagr_2_atk/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Šlágr Original HD</a>
+    <a href="intent://212.102.38.45/live/test_slagr_atk_1200/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Šlágr Muzika HD</a>
+    <a href="intent://212.102.38.45/live/test_slager_premium_hd/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Šlágr Premium HD</a>
   </div>
 </div>
 
@@ -545,317 +330,6 @@ function updateClock() {
 }
 setInterval(updateClock, 1000);
 updateClock();
-
-// ===== SCROLL K SPRÁVAM =====
-function scrollToNews() {
-  document.getElementById('rss-feed').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ===== RSS FEED =====
-(async function(){
-  const FEEDS = [
-    "https://spravy.pravda.sk/rss/xml",
-    "https://domov.sme.sk/rss",
-    "https://hnonline.sk/feed",
-    "https://touchit.sk/feed",
-    "https://www.teraz.sk/rss/vsetky-spravy.rss",
-    "https://www.startitup.sk/feed/",
-    "https://www.ta3.com/rss/5/spravy",
-    "https://www.info.sk/rss/",
-    "https://www.novinky.cz/rss",
-    "https://www.imeteo.sk/rss/news",
-    "https://spravy.pravda.sk/regiony/rss/xml/",
-    "https://sita.sk/feed/",
-    "https://www.ceskenoviny.cz/sluzby/rss/zpravy.php",
-    "https://refresher.sk/rss",
-    "https://www.bratislavak.sk/rss",
-    "https://sportweb.pravda.sk/rss/xml/",
-    "https://www.aktuality.sk/rss/",
-    "https://zive.aktuality.sk/rss/najnovsie/",
-    "https://www.zive.cz/rss",
-    "https://www.reflex.cz/rss",
-    "https://www.mojandroid.sk/feed/atom/",
-    "https://androidportal.sk/feed/",
-    "https://spravy.stvr.sk/feed/",
-    "https://www.blesk.cz/rss",
-    "https://www.newsbyte.sk/feed/",
-    "https://ereport.sk/feed",
-    "https://standard.sk/feed",
-    "https://www.postoj.sk/rss"
-  ];
-
-  const PAGE_SIZE = 12;
-  const BATCH_SIZE = 5;
-  let allItems = [];
-  let filteredItems = [];
-  let index = 0;
-  let isLoading = false;
-  let searchTerm = "";
-
-  // Set pre sledovanie unikátnych URL
-  const seenUrls = new Set();
-
-  async function fetchXMLFeed(url) {
-    try {
-      const res = await fetch("https://corsproxy.io/?" + encodeURIComponent(url));
-      const text = await res.text();
-      const xml = new DOMParser().parseFromString(text, "text/xml");
-      const channel = xml.querySelector("channel");
-      const source = channel?.querySelector("title")?.textContent || url;
-
-      const items = [...xml.querySelectorAll("item")].map(item => {
-        let pub = new Date(
-          item.querySelector("pubDate")?.textContent ||
-          item.querySelector("updated")?.textContent ||
-          item.querySelector("dc\\:date")?.textContent ||
-          item.querySelector("date")?.textContent ||
-          ""
-        );
-        if (isNaN(pub)) pub = new Date();
-
-        let thumb = "", video = "";
-        const enclosure = item.querySelector("enclosure");
-        if (enclosure) {
-          const type = enclosure.getAttribute("type") || "";
-          const url = enclosure.getAttribute("url") || "";
-          if (type.startsWith("image")) thumb = url;
-          else if (type.startsWith("video")) video = url;
-        }
-
-        if (!thumb) {
-          const media = item.querySelector("media\\:content, content");
-          if (media && media.getAttribute("url")) thumb = media.getAttribute("url");
-          else {
-            const descHTML = item.querySelector("description")?.textContent || "";
-            const match = descHTML.match(/<img[^>]+src="([^">]+)"/);
-            if (match) thumb = match[1];
-          }
-        }
-
-        let rawDesc = item.querySelector("description")?.textContent || "";
-        rawDesc = rawDesc.replace(/<[^>]*>/g, "").trim();
-
-        const descLimit = 200;
-        let shortDesc = rawDesc.slice(0, descLimit);
-        if (rawDesc.length > descLimit) {
-          const lastSpace = shortDesc.lastIndexOf(" ");
-          if (lastSpace > 0) shortDesc = shortDesc.slice(0, lastSpace);
-        }
-
-        return {
-          title: item.querySelector("title")?.textContent || "",
-          link: item.querySelector("link")?.textContent || "",
-          desc: shortDesc,
-          pubDate: pub,
-          source,
-          thumb,
-          video
-        };
-      }).filter(i => i.title && i.link);
-
-      return items;
-    } catch (e) {
-      console.warn("Nepodarilo sa načítať feed:", url, e);
-      return [];
-    }
-  }
-
-  const container = document.getElementById("rss-feed");
-  const statsEl = document.getElementById("stats");
-  const searchInput = document.getElementById("search-input");
-
-  const videoObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const video = entry.target;
-        if (video.dataset.src) {
-          video.src = video.dataset.src;
-          video.load();
-          observer.unobserve(video);
-        }
-      }
-    });
-  }, { rootMargin: "200px" });
-
-  function createLoader() {
-    const loader = document.createElement("div");
-    loader.className = "message-box loading-msg";
-    loader.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-    return loader;
-  }
-
-  function updateStats() {
-    const uniqueCount = allItems.length;
-    const filteredCount = filteredItems.length;
-    if (searchTerm) {
-      statsEl.textContent = `📊 ${filteredCount} z ${uniqueCount} správ`;
-    } else {
-      statsEl.textContent = `📊 ${uniqueCount} unikátnych správ`;
-    }
-  }
-
-  function clearFeed() {
-    const cards = container.querySelectorAll(".item-card");
-    cards.forEach(card => card.remove());
-    const messages = container.querySelectorAll(".message-box:not(.loading-msg)");
-    messages.forEach(msg => msg.remove());
-  }
-
-  function renderNext() {
-    if (isLoading) return;
-    
-    // Skontroluj, či už nie sme na konci
-    if (index >= filteredItems.length) return;
-    
-    isLoading = true;
-
-    // Odstráň všetky predošlé loadery
-    const prevLoaders = container.querySelectorAll(".loading-msg");
-    prevLoaders.forEach(loader => loader.remove());
-
-    const loader = createLoader();
-    container.appendChild(loader);
-
-    setTimeout(() => {
-      const slice = filteredItems.slice(index, index + PAGE_SIZE);
-      
-      if (slice.length === 0 && index === 0) {
-        loader.remove();
-        const noResults = document.createElement("div");
-        noResults.className = "message-box no-results";
-        noResults.textContent = "🔍 Nenašli sa žiadne správy";
-        container.appendChild(noResults);
-        isLoading = false;
-        return;
-      }
-
-      slice.forEach(i => {
-        const card = document.createElement("div");
-        card.className = "item-card";
-
-        const isToday = i.pubDate.toDateString() === new Date().toDateString();
-        const badgeDate = `${i.pubDate.toLocaleDateString("sk-SK")} ${i.pubDate.toLocaleTimeString("sk-SK", {hour: "2-digit", minute: "2-digit"})}`;
-
-        card.innerHTML = `
-          ${i.video 
-            ? `<video class="item-thumb lazy-video" data-src="${i.video}" controls preload="metadata"></video>` 
-            : (i.thumb ? `<img class="item-thumb" src="${i.thumb}" alt="${i.title}" loading="lazy">` : ``)
-          }
-          <div class="item-content">
-            <h2><a href="${i.link}" target="_blank" rel="noopener noreferrer">${i.title}</a></h2>
-            <div class="badges">
-              <span class="badge ${isToday ? 'today' : ''}">${isToday ? '🟢 ' : ''}${badgeDate}</span>
-              <span class="badge source">${i.source}</span>
-            </div>
-            <p>${i.desc}${i.desc ? '…' : ''}</p>
-            <a class="read-more-btn" href="${i.link}" target="_blank" rel="noopener noreferrer">Čítať viac</a>
-          </div>
-        `;
-        
-        // Vlož kartu pred loader
-        container.insertBefore(card, loader);
-
-        const video = card.querySelector("video.lazy-video");
-        if (video) videoObserver.observe(video);
-      });
-
-      loader.remove();
-      index += slice.length;
-      isLoading = false;
-
-      // Skontroluj, či sme na konci a ak áno, pridaj end message a odstráň listener
-      if (index >= filteredItems.length) {
-        // Odstráň akýkoľvek zostávajúci loader
-        const remainingLoaders = container.querySelectorAll(".loading-msg");
-        remainingLoaders.forEach(l => l.remove());
-        
-        const end = document.createElement("div");
-        end.className = "message-box end-msg";
-        end.textContent = "✓ Všetky správy načítané";
-        container.appendChild(end);
-        window.removeEventListener("scroll", onScroll);
-      }
-    }, 400);
-  }
-
-  function filterItems() {
-    const term = searchTerm.toLowerCase();
-    if (!term) {
-      filteredItems = [...allItems];
-    } else {
-      filteredItems = allItems.filter(item => 
-        item.title.toLowerCase().includes(term) ||
-        item.desc.toLowerCase().includes(term) ||
-        item.source.toLowerCase().includes(term)
-      );
-    }
-    updateStats();
-  }
-
-  function resetAndRender() {
-    clearFeed();
-    index = 0;
-    isLoading = false; // Reset loading stavu
-    filterItems();
-    
-    // Odstráň starý scroll listener
-    window.removeEventListener("scroll", onScroll);
-    
-    // Pridaj počiatočný loader
-    const loader = createLoader();
-    container.appendChild(loader);
-    
-    renderNext();
-    
-    // Pridaj nový scroll listener
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  function onScroll() {
-    if (isLoading) return;
-    if (window.innerHeight + window.scrollY + 200 >= document.body.scrollHeight) {
-      renderNext();
-    }
-  }
-
-  // Vyhľadávanie s debounce
-  let searchTimeout;
-  searchInput.addEventListener("input", (e) => {
-    clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(() => {
-      searchTerm = e.target.value.trim();
-      resetAndRender();
-    }, 300);
-  });
-
-  // Načítavanie feedov po dávkach
-  for (let i = 0; i < FEEDS.length; i += BATCH_SIZE) {
-    const batch = FEEDS.slice(i, i + BATCH_SIZE);
-    const results = await Promise.all(batch.map(fetchXMLFeed));
-    const newItems = results.flat();
-    
-    // Odstránenie duplicít pomocą Set na sledovanie URL
-    newItems.forEach(item => {
-      if (!seenUrls.has(item.link)) {
-        seenUrls.add(item.link);
-        allItems.push(item);
-      }
-    });
-
-    // Zoradenie všetkých položiek po dátume
-    allItems.sort((a, b) => b.pubDate - a.pubDate);
-    
-    if (i === 0) {
-      resetAndRender();
-    } else {
-      // Aktualizácia už zobrazených položiek
-      updateStats();
-    }
-  }
-
-  // Finálna aktualizácia po načítaní všetkých feedov
-  updateStats();
-})();
 </script>
 
 </body>
