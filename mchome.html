@@ -65,22 +65,6 @@
     100% { background-position: 0% 50%; }
   }
 
-  /* HODINY */
-  .clock-container {
-    text-align: center;
-    padding: 10px 10px;
-    margin-bottom: 16px;
-  }
-
-  .clock-display {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #ffffff;
-    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
-    letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(29, 185, 84, 0.4);
-  }
-
   /* NAVIGAČNÉ TLAČIDLÁ */
   .nav-buttons-container {
     display: flex;
@@ -186,14 +170,6 @@
       margin-bottom: 20px;
     }
 
-    .clock-display {
-      font-size: 1.6rem;
-    }
-
-    .clock-container {
-      margin-bottom: 20px;
-    }
-
     .nav-buttons-container {
       gap: 20px;
       padding: 20px;
@@ -275,11 +251,6 @@
 <!-- NADPIS -->
 <h1 class="main-title">MEDIA CENTER</h1>
 
-<!-- HODINY -->
-<div class="clock-container">
-  <div class="clock-display" id="clock-display">00:00:00</div>
-</div>
-
 <!-- NAVIGAČNÉ TLAČIDLÁ -->
 <div class="webhome-section">
   <div class="section-heading">Ponuka</div>
@@ -321,19 +292,6 @@
     <a href="intent://212.102.38.45/live/test_slager_premium_hd/playlist.m3u8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;S.browser_fallback_url=https://play.google.com/store/apps/details?id=org.videolan.vlc;end" target="_blank" class="web-btn">Šlágr Premium HD</a>
   </div>
 </div>
-
-<script>
-// ===== HODINY =====
-function updateClock() {
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  document.getElementById('clock-display').textContent = `${hours}:${minutes}:${seconds}`;
-}
-setInterval(updateClock, 1000);
-updateClock();
-</script>
 
 </body>
 </html>
